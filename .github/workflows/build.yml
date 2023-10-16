@@ -1,0 +1,26 @@
+name: Builda e Publica Pacote NuGet deste projeto
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout no codigo
+      uses: actions/checkout@v2
+
+    - name: Adiciona msbuild ao PATH (variaveis de ambiente do windows)
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Build da solucao
+      run: msbuild BSM.Tecnologia.Commom.sln /p:Configuration=Debug
+
+    - name: Gera o NuGet Package
+      run: nuget pack BSM.Tecnologia.Commom.csproj -Properties Configuration=Debug
+
+    - name: Publica o Pacote NuGet para o GitHub Packages
+      run: nuget push BSM.Tecnologia.Commom.*.nupkg -ConfigFile NuGet.Config -Source github -ApiKey ${{ secrets.NUGET_API_KEY }} -SkipDuplicate
