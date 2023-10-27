@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Benner.OpenApi">
+      <HintPath>Benner\Benner.OpenApi.dll</HintPath>
+    </Reference>
     <Reference Include="Benner.Tecnologia.Business">
       <HintPath>Benner\Benner.Tecnologia.Business.dll</HintPath>
     </Reference>
@@ -54,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\TResponseModel.cs" />
     <Compile Include="FuncBSM.cs" />
     <Compile Include="Parametros\Parametros.cs" />
     <Compile Include="Parametros\Parametros.Dao.cs" />

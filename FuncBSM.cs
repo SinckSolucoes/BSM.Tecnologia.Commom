@@ -863,6 +863,15 @@ namespace BSM.Tecnologia.Commom
             return imagens;
         }
 
+        public static string SafeSubstring(this string value, int startIndex, int length)
+        {
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+            if (startIndex < 0 || length < 0)
+                return value;
+            return value.Length < length + startIndex ? value.Substring(startIndex, value.Length - startIndex) : value.Substring(startIndex, length);
+        }
+
         ///////----------- > PARAMETROS < -------------//////
 
         public static string BuscaParametro(string parametro)
