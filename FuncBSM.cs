@@ -18,6 +18,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Security.Policy;
 using System.Collections;
+using Benner.Tecnologia.Metadata.Entities;
 
 namespace BSM.Tecnologia.Commom
 {
@@ -648,6 +649,24 @@ namespace BSM.Tecnologia.Commom
             }
         }
 
+        public static string GetEmailTemplate(string diretorioBase, string caminhoHTML, Dictionary<string, string> substituir)
+        {
+            try
+            {
+                string text = File.ReadAllText(diretorioBase + caminhoHTML);
+                foreach (KeyValuePair<string, string> item in substituir)
+                {
+                    text = SubstituirUltimaOcorrencia(text, item.Key, item.Value);
+                }
+
+                string body = text.ToString();
+                return body;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Erro ao obter conteúdo do e-mail. " + ex.Message.ToString());
+            }
+        }
         ///////----------- > GERAL <-------------------//////
 
         /// <summary>
