@@ -828,6 +828,21 @@ namespace BSM.Tecnologia.Commom
             }
         }
 
+        /// <summary>
+        /// Bom dia, Boa tarde e Boa noite conforme o horario atual.
+        /// </summary>
+        /// <returns>Se horario atual estiver entre:<para> 06:00 - 12:00 (Bom dia) </para><para> 12:00 - 18:00 (Boa tarde) </para><para> 18:00 - 06:00 (Boa noite) </para></returns>
+        public static string CumprimentoConformeHorarioAtual()
+        {
+            if (DateTime.Compare(DateTime.Now, new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 12, 0, 0)) < 0 && DateTime.Compare(new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 6, 0, 0), DateTime.Now) < 0)
+                return "Bom dia";
+            else if (DateTime.Compare(new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 12, 0, 0), DateTime.Now) <= 0 && DateTime.Compare(DateTime.Now, new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 18, 0, 0)) < 0)
+                return "Boa tarde";
+
+            return "Boa Noite";
+            
+        }
+
         ///////----------- > Buscar Arquivo <-------------------//////
 
         /// <summary>
