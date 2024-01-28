@@ -406,7 +406,7 @@ namespace BSM.Tecnologia.Commom
         /// <returns></returns>
         public static bool EnviarEmailTemplate(Handle destinatario, string assunto, string diretorioBase, string caminhoHtml, Dictionary<string, string> substituir)
         {
-            Benner.Tecnologia.Metadata.Entities.ZGrupoUsuarios destino = Benner.Tecnologia.Metadata.Entities.ZGrupoUsuarios.GetFirstOrDefault(destinatario.Value);
+            var destino = Benner.Tecnologia.Metadata.Entities.ZGrupoUsuarios.GetFirstOrDefault(destinatario.Value);
 
             if (null == destino.Email || destino.Email == "" || null == destino.Nome || destino.Nome == "")
                 throw new ArgumentException("Cadastro do usuario incompleto. Verifique os campos 'Servidor' e 'Porta' na aba Avançado.");
